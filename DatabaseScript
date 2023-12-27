@@ -1,0 +1,33 @@
+### Seller 테이블
+create table Seller
+(
+    seller_id       int                     not null primary key,
+    reservations    text                    not null,
+    holidays        text                    not null,
+    reservationRequests      text           not null,
+    m_time          datetime                default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP
+);
+
+### Reservation 테이블
+create table Reservation
+(
+    token           varchar(20)             not null    primary key,
+    seller_id       int                     not null,
+    tour_id         int                     not null,
+    state           int                     not null,
+    start_date      datetime                not null,
+    end_date        datetime                not null,
+    m_time          datetime                default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP
+);
+
+### ReservationHistory 테이블
+create table ReservationHistory
+(
+    pkid            int              not null   auto_increment primary key,
+    seller_id       int                     not null,
+    token           text                    not null,
+    pre_value       text                    not null,
+    post_value      text                    not null,
+    action          tinyint(3)              not null,
+    c_time          datetime                default CURRENT_TIMESTAMP not null
+);
